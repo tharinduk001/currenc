@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "371460598065",
+    "project_id": "bionic-flux-427506-t8",
+    "storage_bucket": "bionic-flux-427506-t8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371460598065:android:b44d3dbb0740d227d8e810",
+        "android_client_info": {
+          "package_name": "com.example.currenc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAETDIuYDMqfvKp1oWHp3sYM49Upa08aOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
