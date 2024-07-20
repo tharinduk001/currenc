@@ -14,7 +14,7 @@ class SharedOnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(kDefaultpadding),
+      padding: const EdgeInsets.all(kDefaultpadding),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -25,11 +25,11 @@ class SharedOnboardingScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(title,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
           const SizedBox(height: 20),
           Text(description,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 16, color: kGrey, fontWeight: FontWeight.w500))
         ],
       ),
