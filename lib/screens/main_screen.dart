@@ -12,22 +12,17 @@ class MainScreen extends StatefulWidget {
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
+
 String userName = "CurrenC";
-String userImage = "https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png";
+String userImage =
+    "https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png";
 
 class _MainScreenState extends State<MainScreen> {
-   
   bool isLoading = true;
-
-  @override
-  void initState() {
-    //getUserData();
-    super.initState();
-  }
 
   void getUserData() async {
     try {
-      final user =  FirebaseAuth.instance.currentUser!;
+      final user = FirebaseAuth.instance.currentUser!;
       final userData = await FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)
@@ -52,7 +47,11 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      getUserData();
+    });
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 247, 211, 146),
       bottomNavigationBar: Container(
         color: Colors.transparent,
         child: Padding(
@@ -78,12 +77,15 @@ class _MainScreenState extends State<MainScreen> {
               ]),
         ),
       ),
-      body: getPage(
-              _currentIndex), // Show loading indicator while fetching data
+      body:
+          getPage(_currentIndex), // Show loading indicator while fetching data
     );
   }
 
   Widget getPage(int index) {
+    setState(() {
+      getUserData();
+    });
     if (index == 0) {
       getUserData();
       return CurrencyConverterScreen(
@@ -91,7 +93,7 @@ class _MainScreenState extends State<MainScreen> {
         pickedImageFile: userImage,
       );
     } else if (index == 1) {
-      return CurrencyRatesScreen();
+      return const CurrencyRatesScreen();
     } else if (index == 2) {
       return const UserDetailsScreen();
     }

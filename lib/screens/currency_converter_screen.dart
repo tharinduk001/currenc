@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:currenc/widgets/converter.dart';
 import 'package:currenc/widgets/user_details_top.dart';
 import 'package:flutter/material.dart';
@@ -28,12 +26,15 @@ class _CurrencyConverterScreenState extends State<CurrencyConverterScreen> {
               userName: widget.userName,
               userImageUrl: widget.pickedImageFile,
             ),
+            SizedBox(
+              height: 10,
+            ),
             Expanded(
               child: Container(
                 color: Colors.transparent,
                 height: double.infinity,
                 width: double.infinity,
-                child: const Converter(),
+                child: Center(child: SingleChildScrollView(child: Converter())),
               ),
             )
           ],

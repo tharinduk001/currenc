@@ -11,7 +11,7 @@ class UserDetailsScreen extends StatelessWidget {
           onPressed: () {
             FirebaseAuth.instance.signOut();
           },
-          child: Text("Logout")),
+          child: const Text("Logout")),
     );
   }
 }

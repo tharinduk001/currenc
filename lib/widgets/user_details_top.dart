@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -33,7 +31,7 @@ class UserDetailsTop extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(userName,
+                Text("Hello, $userName",
                     style: TextStyle(
                         fontSize: 21,
                         fontWeight: FontWeight.w600,
