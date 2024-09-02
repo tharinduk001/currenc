@@ -1,5 +1,6 @@
 import 'package:currenc/data/currencies_data.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class Converter extends StatefulWidget {
   const Converter({super.key});
@@ -13,6 +14,37 @@ class _ConverterState extends State<Converter> {
   var _selectedSecondaryCategory = currencyList[2].currencyName;
   TextEditingController primaryCurrencyInput = TextEditingController();
   TextEditingController secondaryCurrencyInput = TextEditingController();
+
+  void _getConvertedData() async {
+    if (primaryCurrencyInput.toString().isEmpty) {
+      print("Inputs are empty. Aborting request.");
+      return;
+    }
+
+    final url = Uri.https(
+      'api.freecurrencyapi.com',
+      '/v1/latest',
+      {
+        'apikey': 'fca_live_SS8tCnl8MoR1jb7gXQIKYSYhiGublk1dnFrfJkbv',
+        'currencies': _selectedSecondaryCategory, //secondary (usd to LKR)
+        'base_currency': _selectedPrimaryCategory, //primary (USD to lkr)
+      },
+    );
+
+    try {
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        print("-----------------------------------------------------");
+        print("Response data: ${response.body}");
+        secondaryCurrencyInput.text = response.body.toString();
+      } else {
+        print("Failed to load data: ${response.statusCode}");
+      }
+    } catch (e) {
+      print("An error occurred: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +63,7 @@ class _ConverterState extends State<Converter> {
               child: Column(
                 children: [
                   const Text(
-                    'Convert Your Currencies Today!',
+                    'Convert Your Currencies Today',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 22,
@@ -120,7 +152,7 @@ class _ConverterState extends State<Converter> {
                     ),
                     Center(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: _getConvertedData,
                         style: ElevatedButton.styleFrom(
                           foregroundColor: Colors.white,
                           backgroundColor:
